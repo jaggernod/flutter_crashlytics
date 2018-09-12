@@ -58,6 +58,14 @@ class FlutterCrashlytics {
     }
   }
 
+  Future<void> logException(dynamic exception) async {
+    if (priority == null && tag == null) {
+      await _channel.invokeMethod('log', msg);
+    } else {
+      await _channel.invokeMethod('log', [priority, tag, msg]);
+    }
+  }
+
   Future<void> setInfo(String key, dynamic info) async {
     return await _channel.invokeMethod('setInfo', {"key": key, "value": info});
   }

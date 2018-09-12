@@ -21,20 +21,33 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Center(
-              child: RaisedButton(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              RaisedButton(
                 onPressed: () {
                   final crash = List()[20];
                   debugPrint(crash);
                 },
                 child: Text('Crash'),
               ),
-            ),
-          ],
+              RaisedButton(
+                onPressed: () {
+                  try {
+                    print("SSSS logged1");
+                    final exception = List()[20];
+                    debugPrint(exception);
+                    print("SSSS logged2");
+                  } catch (e) {
+                    print("SSSS logged $e");
+                  }
+                },
+                child: Text('Log Exception'),
+              ),
+            ],
+          ),
         ),
       ),
     );
